@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /clone/TiendaMascotas/public/
+
+# Si no es un archivo o carpeta real…
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# …envía todo a index.php conservando query string
+RewriteRule ^ index.php [QSA,L]
