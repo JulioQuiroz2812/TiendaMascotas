@@ -20,12 +20,11 @@ class Promocion {
     }
 
     public function create($data) {
-        $sql = "INSERT INTO promociones (nombre, descripcion, tipo_descuento, valor_descuento, fecha_inicio, fecha_fin, criterio_segmentacion)
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO promociones (nombre, tipo_descuento, valor_descuento, fecha_inicio, fecha_fin, criterio_segmentacion)
+                VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
             $data['nombre'],
-            $data['descripcion'],
             $data['tipo_descuento'],
             $data['valor_descuento'],
             $data['fecha_inicio'],
@@ -35,11 +34,12 @@ class Promocion {
     }
 
     public function update($id, $data) {
-        $sql = "UPDATE promociones SET nombre=?, descripcion=?, tipo_descuento=?, valor_descuento=?, fecha_inicio=?, fecha_fin=?, criterio_segmentacion=? WHERE id=?";
+        $sql = "UPDATE promociones
+                SET nombre = ?, tipo_descuento = ?, valor_descuento = ?, fecha_inicio = ?, fecha_fin = ?, criterio_segmentacion = ?
+                WHERE id = ?";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
             $data['nombre'],
-            $data['descripcion'],
             $data['tipo_descuento'],
             $data['valor_descuento'],
             $data['fecha_inicio'],

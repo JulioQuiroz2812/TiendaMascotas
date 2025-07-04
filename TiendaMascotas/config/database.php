@@ -6,8 +6,8 @@ class Database {
     private function __construct() {
         $host = 'localhost';
         $db   = 'tienda_mascotas';
-        $user = 'appuser';
-        $pass = 'Secret123';  // ← Asegúrate de que coincida con la contraseña SQL
+        $user = 'root';
+        $pass = '';  // ← Asegúrate de que coincida con la contraseña SQL
 
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
         try {

@@ -1,4 +1,4 @@
-<h2>Nuevo Producto</h2>
+<h2>Editar Producto</h2>
 <form method="POST">
     <div class="mb-3">
         <label for="nombre">Nombre:</label>
@@ -6,13 +6,14 @@
                id="nombre"
                name="nombre"
                class="form-control"
+               value="<?= htmlspecialchars($producto['nombre']) ?>"
                required>
     </div>
     <div class="mb-3">
         <label for="descripcion">Descripción:</label>
         <textarea id="descripcion"
                   name="descripcion"
-                  class="form-control"></textarea>
+                  class="form-control"><?= htmlspecialchars($producto['descripcion']) ?></textarea>
     </div>
     <div class="mb-3">
         <label for="precio">Precio (S/):</label>
@@ -21,6 +22,7 @@
                name="precio"
                step="0.01"
                class="form-control"
+               value="<?= htmlspecialchars($producto['precio']) ?>"
                required>
     </div>
     <div class="mb-3">
@@ -29,8 +31,9 @@
                id="stock"
                name="stock"
                class="form-control"
+               value="<?= htmlspecialchars($producto['stock']) ?>"
                required>
     </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
     <a href="index.php?page=productos" class="btn btn-secondary">Cancelar</a>
 </form>

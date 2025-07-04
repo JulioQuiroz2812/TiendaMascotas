@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS tienda_mascotas;
 USE tienda_mascotas;
 
--- Tabla clientes
 CREATE TABLE IF NOT EXISTS clientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -10,7 +9,6 @@ CREATE TABLE IF NOT EXISTS clientes (
     direccion VARCHAR(150)
 );
 
--- Tabla productos
 CREATE TABLE IF NOT EXISTS productos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -19,7 +17,6 @@ CREATE TABLE IF NOT EXISTS productos (
     stock INT DEFAULT 0
 );
 
--- Tabla ventas
 CREATE TABLE IF NOT EXISTS ventas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cliente_id INT NOT NULL,
@@ -28,7 +25,16 @@ CREATE TABLE IF NOT EXISTS ventas (
     FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE
 );
 
--- Tabla promociones
+CREATE TABLE IF NOT EXISTS detalle_ventas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    venta_id INT NOT NULL,
+    producto_id INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unitario DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (venta_id) REFERENCES ventas(id) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS promociones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -39,9 +45,18 @@ CREATE TABLE IF NOT EXISTS promociones (
     criterio_segmentacion VARCHAR(150)
 );
 
--- Tabla recordatorios
+CREATE TABLE IF NOT EXISTS promocion_producto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    promocion_id INT NOT NULL,
+    producto_id INT NOT NULL,
+    FOREIGN KEY (promocion_id) REFERENCES promociones(id) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS recordatorios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     descripcion VARCHAR(255) NOT NULL,
-    fecha_recordatorio DATE NOT NULL
+    fecha_recordatorio DATE NOT NULL,
+    cliente_id INT,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE SET NULL
 );

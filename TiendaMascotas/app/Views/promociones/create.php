@@ -6,9 +6,9 @@
     </div>
     <div class="mb-3">
         <label>Tipo de Descuento:</label>
-        <select name="tipo_descuento" class="form-control">
+        <select name="tipo_descuento" class="form-control" required>
             <option value="PORCENTAJE">Porcentaje (%)</option>
-            <option value="FIJO">Monto Fijo (S/)</option>
+            <option value="MONTO">Monto Fijo (S/)</option>
         </select>
     </div>
     <div class="mb-3">

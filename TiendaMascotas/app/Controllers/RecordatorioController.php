@@ -16,7 +16,10 @@ class RecordatorioController {
     public function create() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($this->model->create($_POST)) {
-                $_SESSION['flash'] = ['type' => 'success', 'message' => 'Recordatorio creado correctamente.'];
+                $_SESSION['flash'] = [
+                    'type'    => 'success',
+                    'message' => 'Recordatorio creado correctamente.'
+                ];
                 header('Location: index.php?page=recordatorios');
                 exit;
             }
@@ -25,10 +28,13 @@ class RecordatorioController {
     }
 
     public function edit($id) {
-        $recordatorio = $this->model->find($id);
+        $recordatorio = $this->model->find((int)$id);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($this->model->update($id, $_POST)) {
-                $_SESSION['flash'] = ['type' => 'success', 'message' => 'Recordatorio actualizado correctamente.'];
+            if ($this->model->update((int)$id, $_POST)) {
+                $_SESSION['flash'] = [
+                    'type'    => 'success',
+                    'message' => 'Recordatorio actualizado correctamente.'
+                ];
                 header('Location: index.php?page=recordatorios');
                 exit;
             }
@@ -37,8 +43,11 @@ class RecordatorioController {
     }
 
     public function delete($id) {
-        $this->model->delete($id);
-        $_SESSION['flash'] = ['type' => 'success', 'message' => 'Recordatorio eliminado correctamente.'];
+        $this->model->delete((int)$id);
+        $_SESSION['flash'] = [
+            'type'    => 'success',
+            'message' => 'Recordatorio eliminado correctamente.'
+        ];
         header('Location: index.php?page=recordatorios');
         exit;
     }
